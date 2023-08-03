@@ -10,6 +10,10 @@ func versOneDotOne() {
 	fmt.Printf("version 1.1\n")
 }
 
+func versOneDotTwo() {
+	fmt.Printf("version 1.2\n")
+}
+
 func main() {
 	versOne()
 }
