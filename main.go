@@ -14,6 +14,10 @@ func versOneDotTwo() {
 	fmt.Printf("version 1.2\n")
 }
 
+func versOneDotThree() {
+	fmt.Printf("version 1.3\n")
+}
+
 func main() {
 	versOne()
 }
