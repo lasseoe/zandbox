@@ -16,23 +16,17 @@ jobs:
   build:
     name: Build
     runs-on: [ubuntu-latest]
-    strategy:
-      matrix:
-        go_version: ["1.21"]
     steps:
-      - name: Set up Go ${{ matrix.go_version }}
-        uses: actions/setup-go@v4
-        with:
-          go-version: ${{ matrix.go_version }}
-
       - name: Check out code into the Go module directory
         uses: actions/checkout@v4
 
-      - name: Test stuff
-        run: pwd
-
       - name: Test stuf 2
-        run: env
+        env:
+          CAFILE: ${{ secrets.CAFILE }}
+        run: |
+          echo ${CAFILE} >cafile.pem
+          ls -l
 
       - name: Test stuf 3
-        run: go env
+        run: env|grep -i chrys
+
