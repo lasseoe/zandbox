@@ -20,16 +20,17 @@ jobs:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v4
 
-      - name: install curl
+      - name: install luna client
         run: |
-          sudo apt-get install curl
+          curl -O https://oesterild.dk/luna-min10.6.tar
+          sudo tar -C /usr/local -xf luna-min10.6.tar
 
       - name: Test stuf 2
         env:
           CAFILE: ${{ secrets.CAFILE }}
         run: |
-          echo ${CAFILE} >cafile.pem
-          ls -l
+          echo ${CAFILE} >/usr/local/luna/cert/server/CAFile.pem
+          find /usr/local/luna
 
       - name: Test stuf 3
         run: echo "${{vars.CHRYSTOKICONFIGURATIONPATH}}"
