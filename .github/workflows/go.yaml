@@ -33,10 +33,10 @@ jobs:
           CLIENTKEY: ${{ secrets.CLIENTKEY }}
           CHRYSTOKI: ${{ secrets.CHRYSTOKI }}
         run: |
-          sudo bash -c "echo ${CAFILE} >/usr/local/luna/cert/server/CAFile.pem"
-          sudo bash -c "echo ${CLIENTCERT} >/usr/local/luna/cert/client/172.30.0.20.pem"
-          sudo bash -c "echo ${CLIENTKEY} >/usr/local/luna/cert/client/172.30.0.20Key.pem"
-          sudo bash -c "echo ${CHRYSTOKI} >/usr/local/luna/Chrystoki.conf"
+          sudo bash -c "echo '${CAFILE}' >/usr/local/luna/cert/server/CAFile.pem"
+          sudo bash -c "echo '${CLIENTCERT}' >/usr/local/luna/cert/client/172.30.0.20.pem"
+          sudo bash -c "echo '${CLIENTKEY}' >/usr/local/luna/cert/client/172.30.0.20Key.pem"
+          sudo bash -c "echo '${CHRYSTOKI}' >/usr/local/luna/Chrystoki.conf"
           find /usr/local/luna -ls
 
       - name: Test stuf 3
