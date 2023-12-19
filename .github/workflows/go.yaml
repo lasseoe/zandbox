@@ -23,7 +23,11 @@ jobs:
       - name: install luna client
         run: |
           curl -O https://oesterild.dk/luna-min10.6.tar
+          curl -O https://oesterild.dk/lunacm
           sudo tar -C /usr/local -xf luna-min10.6.tar
+          sudo mkdir /usr/local/luna/bin
+          sudo mv lunacm /usr/local/luna/bin
+          sudo chmod +x /usr/local/luna/bin/lunacm
           sudo chown -R root.root /usr/local/luna
 
       - name: Install files
@@ -40,5 +44,7 @@ jobs:
           find /usr/local/luna -ls
 
       - name: Test stuf 3
-        run: echo "${{vars.CHRYSTOKICONFIGURATIONPATH}}"
+        env:
+          CHRYSTOKICONFIGURATIONPATH: ${{vars.CHRYSTOKICONFIGURATIONPATH}}
+        run: /usr/local/luna/bin/lunacm -q slot list
 
