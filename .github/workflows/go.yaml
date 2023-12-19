@@ -20,6 +20,10 @@ jobs:
       - name: Check out code into the Go module directory
         uses: actions/checkout@v4
 
+      - name: install curl
+        run: |
+          sudo apt-get install curl
+
       - name: Test stuf 2
         env:
           CAFILE: ${{ secrets.CAFILE }}
@@ -28,5 +32,6 @@ jobs:
           ls -l
 
       - name: Test stuf 3
-        run: env|grep -i chrys
+        run: |
+          echo ${ChrystokiConfigurationPath}
 
