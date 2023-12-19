@@ -33,5 +33,5 @@ jobs:
 
       - name: Test stuf 3
         run: |
-          echo ${ChrystokiConfigurationPath}
+          echo ${{ env.CHRYSTOKICONFIGURATIONPATH }}
 
