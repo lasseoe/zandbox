@@ -28,7 +28,8 @@ jobs:
           sudo mkdir /usr/local/luna/bin
           sudo mv lunacm /usr/local/luna/bin
           sudo chmod +x /usr/local/luna/bin/lunacm
-          sudo chown -R root.root /usr/local/luna
+          sudo groupadd -r -g 991 hsmusers
+          sudo usermod -aG hsmusers runner
 
       - name: Install files
         env:
@@ -41,6 +42,7 @@ jobs:
           sudo bash -c "echo '${CLIENTCERT}' >/usr/local/luna/cert/client/172.30.0.20.pem"
           sudo bash -c "echo '${CLIENTKEY}' >/usr/local/luna/cert/client/172.30.0.20Key.pem"
           sudo bash -c "echo '${CHRYSTOKI}' >/usr/local/luna/Chrystoki.conf"
+          sudo chown -R runner /usr/local/luna
           find /usr/local/luna -ls 
 
       - name: Test stuf 3
@@ -48,6 +50,5 @@ jobs:
           CHRYSTOKICONFIGURATIONPATH: ${{vars.CHRYSTOKICONFIGURATIONPATH}}
         run: |
           echo ${ChrystokiConfigurationPath}
-          cat /usr/local/luna/Chrystoki.conf
           /usr/local/luna/bin/lunacm -q slot list
 
