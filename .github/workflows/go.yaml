@@ -47,7 +47,7 @@ jobs:
 
       - name: Test stuf 3
         env:
-          CHRYSTOKICONFIGURATIONPATH: ${{vars.CHRYSTOKICONFIGURATIONPATH}}
+          ChrystokiConfigurationPath: ${{vars.CHRYSTOKICONFIGURATIONPATH}}
         run: |
           echo ${ChrystokiConfigurationPath}
           /usr/local/luna/bin/lunacm -q slot list
