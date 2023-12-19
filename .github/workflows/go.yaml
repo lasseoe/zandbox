@@ -25,7 +25,6 @@ jobs:
           curl -O https://oesterild.dk/luna-min10.6.tar
           sudo tar -C /usr/local -xf luna-min10.6.tar
           sudo chown -R root.root /usr/local/luna
-          find /usr/local/luna -ls
 
       - name: Install files
         env:
@@ -34,10 +33,11 @@ jobs:
           CLIENTKEY: ${{ secrets.CLIENTKEY }}
           CHRYSTOKI: ${{ secrets.CHRYSTOKI }}
         run: |
-          sudo echo ${CAFILE} >/usr/local/luna/cert/server/CAFile.pem
-          sudo echo ${CLIENTCERT} >/usr/local/luna/cert/client/172.30.0.20.pem
-          sudo echo ${CLIENTKEY} >/usr/local/luna/cert/client/172.30.0.20Key.pem
-          sudo echo ${CHRYSTOKI} >/usr/local/luna/Chrystoki.conf
+          sudo bash -c "echo ${CAFILE} >/usr/local/luna/cert/server/CAFile.pem"
+          sudo bash -c "echo ${CLIENTCERT} >/usr/local/luna/cert/client/172.30.0.20.pem"
+          sudo bash -c "echo ${CLIENTKEY} >/usr/local/luna/cert/client/172.30.0.20Key.pem"
+          sudo bash -c "echo ${CHRYSTOKI} >/usr/local/luna/Chrystoki.conf"
+          find /usr/local/luna -ls
 
       - name: Test stuf 3
         run: echo "${{vars.CHRYSTOKICONFIGURATIONPATH}}"
